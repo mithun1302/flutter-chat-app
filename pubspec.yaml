@@ -1,0 +1,61 @@
+name: hlochatbusiness
+description: A new Flutter application.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+  cupertino_icons: ^1.0.2
+  flutter_native_splash: ^1.2.0
+  animated_text_kit: ^4.2.1
+  google_fonts: ^2.1.0
+  intl_phone_number_input: ^0.7.0+2
+  pinput: ^1.2.0
+  firebase_auth: ^2.0.0
+  firebase_core: ^1.4.0
+  shared_preferences: ^2.0.6
+  sms_autofill: ^2.0.0
+  otp_autofill: ^1.1.0
+  cloud_firestore: ^2.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+
+  uses-material-design: true
+
+
+  assets:
+    - assets/
+  #   - images/a_dot_ham.jpeg
+
+
+  fonts:
+   - family: Canterbury
+     fonts:
+      - asset: assets/fonts/Canterbury.ttf
+
+   - family: BeyondWonderland
+     fonts:
+      - asset: assets/fonts/BeyondWonderland.ttf
+#         - asset: fonts/Schyler-Italic.ttf
+#           style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700

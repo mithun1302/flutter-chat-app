@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "385385125192",
+    "project_id": "hlochat-business-55d57",
+    "storage_bucket": "hlochat-business-55d57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385385125192:android:b8c136915789c8ceb84f7d",
+        "android_client_info": {
+          "package_name": "com.hloapp.hlochatbusiness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385385125192-r0bv3mvggt6d01o11tomda11nhbqbole.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hloapp.hlochatbusiness",
+            "certificate_hash": "b84ddb36f35f02520ffe8958f991ded6c2b65c28"
+          }
+        },
+        {
+          "client_id": "385385125192-rh03fqjojmdb0qbgvlpu732li7v0vk86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcfYTorAgwgW4SNbQVbV5EGWj_fKf8Zmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385385125192-rh03fqjojmdb0qbgvlpu732li7v0vk86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
