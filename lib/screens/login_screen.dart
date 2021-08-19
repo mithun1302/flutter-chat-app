@@ -1,10 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:hlochatbusiness/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class PhoneNumLogin extends StatefulWidget {
-  const PhoneNumLogin({Key key}) : super(key: key);
+  const PhoneNumLogin({Key? key}) : super(key: key);
 
   static const String id = 'login-screen';
 
@@ -15,7 +17,7 @@ class PhoneNumLogin extends StatefulWidget {
 class _PhoneNumLoginState extends State<PhoneNumLogin> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  final TextEditingController controller = TextEditingController();
+  late TextEditingController controller;
   String initialCountry = 'IN';
   PhoneNumber number = PhoneNumber(isoCode: 'IN');
   var phone;
@@ -26,6 +28,17 @@ class _PhoneNumLoginState extends State<PhoneNumLogin> {
     setState(() {
       this.number = number;
     });
+    User user = phone.user;
+    return getPhoneNumber(phone);
+  }
+
+  late DatabaseReference _ref;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = TextEditingController();
+    _ref = FirebaseDatabase.instance.reference().child('Contacts');
   }
 
   // @override
@@ -33,6 +46,7 @@ class _PhoneNumLoginState extends State<PhoneNumLogin> {
   //   controller.dispose();
   //   super.dispose();
   // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +94,7 @@ class _PhoneNumLoginState extends State<PhoneNumLogin> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Otp(
-                                phone: phone,
-                              )));
+                          builder: (context) => saveContact()));
                 },
                 child: Text('Send OTP'),
               ),
@@ -91,5 +103,25 @@ class _PhoneNumLoginState extends State<PhoneNumLogin> {
         ),
       ),
     );
+  }
+
+   saveContact(){
+
+    String number = controller.text;
+
+    Map<String,String> contact = {
+      'number': '+91 ' + number,
+    };
+
+    _ref.push().set(contact).then((value) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Otp(
+                phone: phone,
+              )));
+    });
+
+
   }
 }

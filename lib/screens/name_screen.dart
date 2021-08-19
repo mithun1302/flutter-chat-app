@@ -1,5 +1,6 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:hlochatbusiness/screens/chat_screen.dart';
+import 'package:hlochatbusiness/screens/home_screen.dart';
 
 class UserName extends StatefulWidget {
   
@@ -10,8 +11,19 @@ class UserName extends StatefulWidget {
 
 class _UserNameState extends State<UserName> {
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController userName = new TextEditingController();
+  late TextEditingController yourName;
+  late TextEditingController userName;
+
+  late DatabaseReference _ref;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    yourName = new TextEditingController();
+    userName = new TextEditingController();
+    _ref = FirebaseDatabase.instance.reference().child('Contacts');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +36,7 @@ class _UserNameState extends State<UserName> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 32),
               child: TextFormField(
-                controller: name,
+                controller: yourName,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Enter your Name',
@@ -45,12 +57,29 @@ class _UserNameState extends State<UserName> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ChatList(
+                      builder: (context) => saveContact(
                       )));
             }, child: Text('Proceed')))
           ],
         ),
       ),
     );
+  }
+   saveContact() {
+    String name = yourName.text;
+    String number = userName.text;
+
+    Map<String, String> contact = {
+      'name': name,
+      'number':  number,
+    };
+
+    _ref.push().set(contact).then((value) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomeScreen(
+              )));
+    });
   }
 }

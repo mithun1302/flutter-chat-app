@@ -17,7 +17,7 @@ class Otp extends StatefulWidget {
 
 class _OtpState extends State<Otp> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-  String _verificationCode;
+  late String _verificationCode;
   var phoneNo;
   @override
   void initState() {
@@ -63,7 +63,7 @@ class _OtpState extends State<Otp> {
                           });
                         } catch (e) {
                           FocusScope.of(context).unfocus();
-                          _scaffoldkey.currentState
+                          _scaffoldkey.currentState!
                           // ignore: deprecated_member_use
                               .showSnackBar(SnackBar(content: Text('Invalid Otp')));
                         }
@@ -95,7 +95,7 @@ class _OtpState extends State<Otp> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ChatList()
+                              builder: (context) => UserName()
                           ));
                     },
                     child: Text('Verify'),
@@ -128,7 +128,7 @@ class _OtpState extends State<Otp> {
         verificationFailed: (FirebaseAuthException e) {
           print(e);
         },
-        codeSent: (String verify, int resendToken) {
+        codeSent: (String verify, int? resendToken) {
           setState(() {
             _verificationCode = verify;
           });

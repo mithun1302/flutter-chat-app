@@ -12,15 +12,13 @@ void main(){
   runApp(MyApp());
 }
 
-String finalPhone;
-
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-
+// late String finalPhone;
 
 class _MyAppState extends State<MyApp> {
 
@@ -30,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => (finalPhone == null ? PhoneNumLogin() : ChatList())
+              builder: (context) => (PhoneNumLogin())
           ));
     });
     super.initState();
@@ -40,9 +38,9 @@ class _MyAppState extends State<MyApp> {
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var obtainPhone = sharedPreferences.getString('phone');
     setState((){
-      finalPhone = obtainPhone;
+      // finalPhone = obtainPhone!;
     });
-  }
+  } 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -57,7 +55,7 @@ class _MyAppState extends State<MyApp> {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
                 primaryColor: Colors.yellowAccent,),
-            home: (finalPhone == null ? PhoneNumLogin() : ChatList()),
+            home: (PhoneNumLogin()),
           );
 
         }

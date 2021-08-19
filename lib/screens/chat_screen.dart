@@ -1,19 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class ChatList extends StatefulWidget {
+class ChatScreen extends StatefulWidget {
 
   @override
-  _ChatListState createState() => _ChatListState();
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatListState extends State<ChatList> {
+class _ChatScreenState extends State<ChatScreen> {
   var uidData;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    uidData = FirebaseAuth.instance.currentUser.uid;
+    uidData = FirebaseAuth.instance.currentUser!.uid;
   }
 
   @override
